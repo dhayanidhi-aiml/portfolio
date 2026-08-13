@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal portfolio website">
+  <title>Alex Morgan | Portfolio</title>
+
+  <style>
+    /* =========================
+       RESET & GLOBAL STYLES
+    ========================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg-light: #11111a;
+      --card: rgba(255, 255, 255, 0.05);
+      --text: #f5f5f7;
+      --muted: #a1a1aa;
+      --primary: #8b5cf6;
+      --secondary: #06b6d4;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .section-title span {
+      color: var(--primary);
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    /* =========================
+       NAVBAR
+    ========================== */
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 10, 15, 0.75);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #ddd;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: var(--primary);
+      filter: blur(180px);
+      opacity: 0.2;
+      top: 10%;
+      left: -150px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: var(--secondary);
+      filter: blur(180px);
+      opacity: 0.15;
+      bottom: 0;
+      right: -100px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 750px;
+    }
+
+    .hero-content .small-title {
+      color: var(--primary);
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 7vw, 80px);
+      line-height: 1.05;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 650px;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: white;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* =========================
+       ABOUT
+    ========================== */
+
+    .about {
+      background: var(--bg-light);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-image {
+      width: 100%;
+      height: 450px;
+      border-radius: 20px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(139, 92, 246, 0.4),
+          rgba(6, 182, 212, 0.2)
+        );
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 100px;
+    }
+
+    .about-text h3 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .info div {
+      padding: 15px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .info strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 3px;
+    }
+
+    /* =========================
+       SKILLS
+    ========================== */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .skill {
+      padding: 30px 20px;
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+
+    .skill:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+    }
+
+    .skill-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .skill h3 {
+      margin-bottom: 8px;
+    }
+
+    .skill p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* =========================
+       PROJECTS
+    ========================== */
+
+    .projects {
+      background: var(--bg-light);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .project {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+    }
+
+    .project-img {
+      height: 210px;
+      background: linear-gradient(
+        135deg,
+        #1d1333,
+        #102c35
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 55px;
+    }
+
+    .project-content {
+      padding: 25px;
+    }
+
+    .project-content h3 {
+      margin-bottom: 10px;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      background: rgba(139, 92, 246, 0.15);
+      color: #c4b5fd;
+    }
+
+    /* =========================
+       EXPERIENCE
+    ========================== */
+
+    .timeline {
+      max-width: 800px;
+      margin: auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 15px;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 55px;
+      margin-bottom: 45px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 5px;
+      width: 15px;
+      height: 15px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--primary);
+    }
+
+    .timeline-item h3 {
+      font-size: 21px;
+    }
+
+    .timeline-item .company {
+      color: var(--primary);
+      margin: 5px 0;
+    }
+
+    .timeline-item .date {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+    }
+
+    /* =========================
+       CONTACT
+    ========================== */
+
+    .contact {
+      background: var(--bg-light);
+    }
+
+    .contact-box {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      padding: 50px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 20px;
+    }
+
+    .contact-box h2 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .socials {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .socials a {
+      width: 45px;
+      height: 45px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+    }
+
+    .socials a:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: translateY(-4px);
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      padding: 25px;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 900px) {
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image {
+        height: 350px;
+      }
+    }
+
+    @media (max-width: 650px) {
+
+      .nav-links {
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        background: #0a0a0f;
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+      .section-title h2 {
+        font-size: 34px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .info {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-box {
+        padding: 35px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#home" class="logo">
+          Alex<span>.</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+
+        <div class="small-title">
+          👋 Hello, I'm
+        </div>
+
+        <h1>
+          Alex Morgan<br>
+          <span>Web Developer</span>
+        </h1>
+
+        <p>
+          I create modern, fast and beautiful websites that turn ideas
+          into memorable digital experiences.
+        </p>
+
+        <div class="buttons">
+          <a href="#projects" class="btn btn-primary">
+            View My Work
+          </a>
+
+          <a href="#contact" class="btn btn-outline">
+            Contact Me
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       ABOUT
+  ========================== -->
+
+  <section class="section about" id="about">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>About <span>Me</span></h2>
+        <p>A little bit about who I am</p>
+      </div>
+
+      <div class="about-grid">
+
+        <div class="about-image">
+          👨‍💻
+        </div>
+
+        <div class="about-text">
+
+          <h3>Building digital experiences with passion.</h3>
+
+          <p>
+            I'm a passionate web developer who enjoys creating clean,
+            modern and user-friendly websites. I love turning complex
+            problems into simple and elegant solutions.
+          </p>
+
+          <p>
+            When I'm not coding, I enjoy learning new technologies,
+            exploring creative ideas and working on personal projects.
+          </p>
+
+          <div class="info">
+            <div>
+              <strong>Name</strong>
+              Alex Morgan
+            </div>
+
+            <div>
+              <strong>Location</strong>
+              India
+            </div>
+
+            <div>
+              <strong>Email</strong>
+              hello@example.com
+            </div>
+
+            <div>
+              <strong>Experience</strong>
+              3+ Years
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       SKILLS
+  ========================== -->
+
+  <section class="section" id="skills">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>My <span>Skills</span></h2>
+        <p>Technologies I work with</p>
+      </div>
+
+      <div class="skills-grid">
+
+        <div class="skill">
+          <div class="skill-icon">🌐</div>
+          <h3>HTML</h3>
+          <p>Semantic and accessible web structure.</p>
+        </div>
+
+        <div class="skill">
+          <div class="skill-icon">🎨</div>
+          <h3>CSS</h3>
+          <p>Responsive and modern UI design.</p>
+        </div>
+
+        <div class="skill">
+          <div class="skill-icon">⚡</div>
+          <h3>JavaScript</h3>
+          <p>Interactive and dynamic experiences.</p>
+        </div>
+
+        <div class="skill">
+          <div class="skill-icon">⚛️</div>
+          <h3>React</h3>
+          <p>Modern component-based applications.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       PROJECTS
+  ========================== -->
+
+  <section class="section projects" id="projects">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Featured <span>Projects</span></h2>
+        <p>Some of my recent work</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project">
+
+          <div class="project-img">
+            🛒
+          </div>
+
+          <div class="project-content">
+            <h3>E-Commerce Website</h3>
+
+            <p>
+              A modern online shopping platform with a clean,
+              responsive user interface.
+            </p>
+
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="project">
+
+          <div class="project-img">
+            📱
+          </div>
+
+          <div class="project-content">
+            <h3>Mobile App Landing Page</h3>
+
+            <p>
+              A stylish landing page designed to showcase a
+              modern mobile application.
+            </p>
+
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">UI/UX</span>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="project">
+
+          <div class="project-img">
+            📊
+          </div>
+
+          <div class="project-content">
+            <h3>Analytics Dashboard</h3>
+
+            <p>
+              A responsive dashboard interface for visualizing
+              business and analytics data.
+            </p>
+
+            <div class="tags">
+              <span class="tag">React</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">CSS</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       EXPERIENCE
+  ========================== -->
+
+  <section class="section" id="experience">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>My <span>Experience</span></h2>
+        <p>My professional journey</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+
+          <h3>Senior Web Developer</h3>
+
+          <div class="company">
+            Creative Studio
+          </div>
+
+          <div class="date">
+            2024 — Present
+          </div>
+
+          <p>
+            Developing responsive websites and web applications,
+            collaborating with designers and improving website
+            performance.
+          </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <h3>Frontend Developer</h3>
+
+          <div class="company">
+            Digital Agency
+          </div>
+
+          <div class="date">
+            2022 — 2024
+          </div>
+
+          <p>
+            Built responsive user interfaces and interactive
+            experiences for clients across different industries.
+          </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+          <h3>Junior Developer</h3>
+
+          <div class="company">
+            Tech Company
+          </div>
+
+          <div class="date">
+            2021 — 2022
+          </div>
+
+          <p>
+            Worked on frontend development, website maintenance
+            and implementing new features.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CONTACT
+  ========================== -->
+
+  <section class="section contact" id="contact">
+
+    <div class="container">
+
+      <div class="contact-box">
+
+        <h2>Let's Work Together</h2>
+
+        <p>
+          Have a project in mind? I'd love to hear about it.
+          Let's create something amazing together.
+        </p>
+
+        <a
+          href="mailto:hello@example.com"
+          class="btn btn-primary"
+        >
+          Send Me an Email
+        </a>
+
+        <div class="socials">
+
+          <a href="#" aria-label="GitHub">
+            GH
+          </a>
+
+          <a href="#" aria-label="LinkedIn">
+            in
+          </a>
+
+          <a href="#" aria-label="Twitter">
+            𝕏
+          </a>
+
+          <a href="#" aria-label="Instagram">
+            IG
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+    © 2026 Alex Morgan. All Rights Reserved.
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+
+    // Close mobile menu after clicking a link
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("active");
+      });
+    });
+  </script>
+
+</body>
+</html>
